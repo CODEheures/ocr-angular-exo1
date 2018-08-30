@@ -1,0 +1,21 @@
+<li class="list-group-item" 
+  [ngClass]="{
+    'list-group-item-success': post.loveIts > 0,
+    'list-group-item-danger':  post.loveIts < 0
+  }">
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 [ngClass]="{
+      'text-success': post.loveIts > 0,
+      'text-danger':  post.loveIts < 0
+    }">{{ post.title }}</h4>
+    <small class="text-secondary">{{ post.created_at | date:"short" }}</small>
+  </div>
+  <p [ngClass]="{
+    'text-success': post.loveIts > 0,
+    'text-danger':  post.loveIts < 0
+  }">{{ post.content }}</p>
+  <div class="d-flex justify-content-start">
+    <button class="btn btn-success mr-2" (click)="onIncrementLove()">Love It!</button>
+    <button class="btn btn-danger" (click)="onDecrementLove()">Don't love It</button>
+  </div>
+</li>

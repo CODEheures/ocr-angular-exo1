@@ -1,7 +1,20 @@
 <div class="row">
   <div class="col">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="msgError">
+        {{msgError}}
+    </div>
+    <h1>Liste des Posts</h1>
     <ul class="list-group">
-      <app-post-list-item *ngFor="let post of posts" [post]="post"></app-post-list-item>
+      <li 
+      *ngFor="let post of posts; let i = index"
+      class="list-group-item" 
+      [ngClass]="{
+        'list-group-item-success': post.loveIts > 0,
+        'list-group-item-danger':  post.loveIts < 0
+      }">
+        <app-post-list-item [post]="post" [index]="i" (postUpdateError)="$event"></app-post-list-item>
+      </li>
     </ul>
+    <p *ngIf="!posts || posts.length === 0">Pas encore de post <a [routerLink]="['/new']">en ajouter un nouveau</a></p>
   </div>
 </div>

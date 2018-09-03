@@ -1,15 +1,12 @@
-<li class="list-group-item" 
-  [ngClass]="{
-    'list-group-item-success': post.loveIts > 0,
-    'list-group-item-danger':  post.loveIts < 0
-  }">
-  <div class="d-flex justify-content-between align-items-center">
-    <h4>{{ post.title }}</h4>
+<div class="d-flex justify-content-between align-items-center">
+    <h4>{{ post.title }} ({{ post.loveIts }})</h4>
     <small class="text-secondary">{{ post.created_at | date:"short" }}</small>
   </div>
-  <p>{{ post.content }}</p>
-  <div class="d-flex justify-content-start">
-    <button class="btn btn-success mr-2" (click)="onIncrementLove()">Love It!</button>
-    <button class="btn btn-danger" (click)="onDecrementLove()">Don't love It</button>
+  <p style="white-space: pre">{{ post.content }}</p>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary mr-2" (click)="onIncrementLove()">Love It!</button>
+      <button class="btn btn-primary" (click)="onDecrementLove()">Don't love It</button>
+      <button class="btn btn-danger float-right" (click)="onDeletePost()">Supprimer</button>
+    </div>
   </div>
-</li>
